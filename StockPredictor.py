@@ -19,6 +19,7 @@ def get_data(filename):
     return
 
 def predict_prices(dates, prices, x):
+    #edit this method
     dates = np.reshape(dates,(len(dates), 1))
     
     svr_lin = SVR(kernel= 'linear', C=1e3)
@@ -39,10 +40,11 @@ def predict_prices(dates, prices, x):
     plt.legend()
     plt.show()
     
-    return svr_rbf.predict(x,[0]), svr_lin.predict(x,[0]), svr_poly.predict(x,[0])
+    return svr_rbf.predict(x)[0], svr_lin.predict(x)[0], svr_poly.predict(x)[0]
 
 get_data('GME_stock.csv')
 
-predicted_price = predict_prices(dates, prices, 29)
+#come back to edit this
+predicted_price = predict_prices(dates, prices, [29])
 
 print(predicted_price)
