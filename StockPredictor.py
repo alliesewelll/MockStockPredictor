@@ -14,12 +14,13 @@ def get_data(filename):
         csvFileReader = csv.reader(csvfile)
         next(csvFileReader) #skips first row bc its just column names
         for row in csvFileReader:
-            dates.append(int(row[0].split('-')[2]))
+            dates.append(int(row[0].split('-')[0]))
             prices.append(float(row[1]))
     return
 
 def predict_prices(dates, prices, x):
     #edit this method
+    #this method expects x to be a 2d array, figure out how to pass that in properly
     dates = np.reshape(dates,(len(dates), 1))
     
     svr_lin = SVR(kernel= 'linear', C=1e3)
@@ -45,6 +46,6 @@ def predict_prices(dates, prices, x):
 get_data('GME_stock.csv')
 
 #come back to edit this
-predicted_price = predict_prices(dates, prices, [29])
+predicted_price = predict_prices(dates, prices, [[29]])
 
 print(predicted_price)
