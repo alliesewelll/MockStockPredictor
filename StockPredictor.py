@@ -14,8 +14,12 @@ def get_data(filename):
         csvFileReader = csv.reader(csvfile)
         next(csvFileReader) #skips first row bc its just column names
         for row in csvFileReader:
-            dates.append(int(row[0].split('-')[0]))
-            prices.append(float(row[1]))
+            current_date = row[0]
+            date_arr = current_date.split('-')
+            if(int(date_arr[0]) == 2020):
+                #dates.append(int(row[0].split('-')[2])) 
+                dates.append(int(date_arr[2])) 
+                prices.append(float(row[1]))
     return
 
 def predict_prices(dates, prices, x):
